@@ -1,41 +1,36 @@
+import axios from "axios";
+
 const API_URL = "http://localhost:3000/todos";
 
-async function fetchWithErrorHandling(url = "", config = {}) {
-  const response = await fetch(url, config);
-  return response.ok
-    ? await response.json()
-    : Promise.reject(new Error("Not Found"));
+const axiosInstance = axios.create({
+  baseURL: API_URL,
+  headers: {
+    "Content-Type": "application/json",
+  },
+  withCredentials: true,
+});
+
+async function axiosWithErrorHandling(promise) {
+  try {
+    const response = await promise;
+    return response.data;
+  } catch (error) {
+    throw new Error(error.response?.data?.message || "Not Found");
+  }
 }
 
 export function getTodos() {
-  return fetchWithErrorHandling(API_URL);
+  return axiosWithErrorHandling(axiosInstance.get("/"));
 }
 
 export function createTodo(todo) {
-  return fetchWithErrorHandling(API_URL, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(todo),
-    credentials: "include",
-  });
+  return axiosWithErrorHandling(axiosInstance.post("/", todo));
 }
 
 export function updateTodo(id, updates) {
-  return fetchWithErrorHandling(`${API_URL}/${id}`, {
-    method: "PUT",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(updates),
-    credentials: "include",
-  });
+  return axiosWithErrorHandling(axiosInstance.put(`/${id}`, updates));
 }
 
 export function deleteTodo(id) {
-    return fetchWithErrorHandling(`${API_URL}/${id}`, {
-      method: "DELETE",
-      credentials: "include",
-    });
+  return axiosWithErrorHandling(axiosInstance.delete(`/${id}`));
 }
