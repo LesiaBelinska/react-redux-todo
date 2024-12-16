@@ -1,0 +1,27 @@
+.input {
+  margin-bottom: 10px;
+  width: calc(100% - 22px);
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.button {
+  padding: 10px 20px;
+  color: white;
+  border: none;
+  background-color: #7f9eb2;
+  border-radius: 5px;
+  cursor: pointer;
+
+  transition: background-color 0.3s;
+}
+
+.button:hover {
+    background-color: #5a7a8a;
+  }
+
+.error {
+    margin-bottom: 15px;
+    color: red;
+}
