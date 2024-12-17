@@ -1,21 +1,26 @@
-import { useContext } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import { FaSun, FaMoon } from "react-icons/fa";
 
-import { ThemeContext } from "../../context/ThemeContext";
+import { toggleTheme } from "../../store/slices/themeSlicer";
 import s from "./ThemeSwitcher.module.css";
 
 const ThemeSwitcher = () => {
-  const { theme, toggleTheme } = useContext(ThemeContext);
+  const darkMode = useSelector((state) => state.theme.darkMode);
+  const dispatch = useDispatch();
+
+  const handleToggleTheme = () => {
+    dispatch(toggleTheme());
+  };
 
   return (
-    <div className={`${s.switcher} ${theme === "dark" ? s.dark : s.light}`}>
+    <div className={`${s.switcher} ${darkMode ? s.dark : s.light}`}>
       <FaSun className={`${s.icon} ${s.sun}`} />
       <input
         type="checkbox"
         id="theme-toggle"
         className={s.checkbox}
-        onChange={toggleTheme}
-        checked={theme === "dark"}
+        onChange={handleToggleTheme}
+        checked={darkMode}
       />
       <label htmlFor="theme-toggle" className={s.label}>
         <span className={s.ball}></span>
