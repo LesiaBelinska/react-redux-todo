@@ -1,5 +1,7 @@
 const express = require("express");
 const cors = require("cors");
+const { v4: uuidv4 } = require("uuid");
+
 const PORT = 3000;
 
 const app = express();
@@ -21,7 +23,7 @@ app.get("/todos", (req, res) => {
 });
 
 app.post("/todos", (req, res) => {
-  const newTodo = { ...req.body, id: todos.length + 1 };
+  const newTodo = { ...req.body, id: uuidv4() };
 
   todos.push(newTodo);
   res.status(200).json(newTodo);
@@ -31,7 +33,7 @@ app.put("/todos/:id", (req, res) => {
   const { id } = req.params;
   const { text, status } = req.body;
 
-  const todo = todos.find((todo) => todo.id === +id);
+  const todo = todos.find((todo) => todo.id === id);
   if (!todo) {
     return res.status(404).json({ message: "Todo not found!" });
   }
@@ -45,7 +47,7 @@ app.put("/todos/:id", (req, res) => {
 app.delete("/todos/:id", (req, res) => {
   const { id } = req.params;
 
-  const todoIndex = todos.findIndex((todo) => todo.id === +id);
+  const todoIndex = todos.findIndex((todo) => todo.id === id);
   if (todoIndex === -1) {
     return res.status(404).json({ message: "Todo not found!" });
   }
