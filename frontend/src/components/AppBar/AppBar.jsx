@@ -1,15 +1,14 @@
-import { useContext } from "react";
+import { useSelector } from "react-redux";
 
-import { ThemeContext } from "../../context/ThemeContext";
 import Navigation from "../Navigation/Navigation.jsx";
 import ThemeSwitcher from "../ThemeSwitcher/ThemeSwitcher";
 import s from "./AppBar.module.css";
 
 const AppBar = () => {
-  const { theme } = useContext(ThemeContext);
+  const darkMode = useSelector((state) => state.theme.darkMode);
 
   return (
-    <header className={`${s.header} ${theme === "dark" ? s.dark : s.light}`}>
+    <header className={`${s.header} ${darkMode ? s.dark : s.light}`}>
       <Navigation />
       <ThemeSwitcher />
     </header>
