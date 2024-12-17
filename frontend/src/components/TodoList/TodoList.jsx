@@ -8,7 +8,7 @@ const TodoList = ({todos, onToggleStatus, onDeleteTodo}) => {
             {todos.map((todo) => {
                 return (
                     <TodoItem
-                        key={todo.id}
+                        key={todo.id }
                         id={todo.id}
                         taskText={todo.text}
                         taskStatus={todo.status}
