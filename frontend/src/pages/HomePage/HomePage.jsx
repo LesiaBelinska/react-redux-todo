@@ -1,72 +1,39 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { toast } from "react-hot-toast";
+
 
 import TodoForm from "../../components/TodoForm/TodoForm.jsx";
 import TodoList from "../../components/TodoList/TodoList.jsx";
 import {
-  setTodos,
-  addTodo,
-  updateTodoStatus,
+  fetchTodos,
+  createNewTodo,
+  updateTodo,
   deleteTodo,
-} from "../../store/slices/todoSlicer.js";
+} from "../../store/thunks/todosThunk.js";
 
-import * as api from "../../services/todos-api.js";
 import s from "./HomePage.module.css";
 
 const HomePage = () => {
   const dispatch = useDispatch();
-  const todos = useSelector((state) => state.todos.todos);
+  const { todos, isLoading } = useSelector((state) => state.todos);
   const totalTodos = todos.length;
 
   useEffect(() => {
-    const fetchTodos = async () => {
-      try {
-        const response = await api.getTodos();
-        dispatch(setTodos(response));
-      } catch (error) {
-        console.error("Error fetching todos:", error.message);
-        toast.error("Failed to fetch todos. Please try again later.");
-      }
-    };
-    fetchTodos();
+    dispatch(fetchTodos());
   }, [dispatch]);
 
-  const addNewTodo = async (taskText) => {
+  const addNewTodo = (taskText) => {
     const newTodo = { text: taskText, status: false };
-    try {
-      const createdTodo = await api.createTodo(newTodo);
-      dispatch(addTodo(createdTodo));
-      toast.success("Todo successfully added!");
-    } catch (error) {
-      console.error("Error creating todo:", error.message);
-      toast.error("Failed to add todo. Please try again.");
-    }
+    dispatch(createNewTodo(newTodo));
   };
 
-  const toggleTodoStatus = async (id, currentStatus) => {
-    const updatedStatus = !currentStatus;
-    try {
-      await api.updateTodo(id, { status: updatedStatus });
-      dispatch(updateTodoStatus({ id, status: updatedStatus }));
-      toast.success(
-        `Todo status updated to ${updatedStatus ? "completed" : "incomplete"}!`
-      );
-    } catch (error) {
-      console.error("Error updating todo:", error.message);
-      toast.error("Failed to update todo status. Please try again.");
-    }
+  const toggleTodoStatus = (id, currentStatus) => {
+    const updatedStatus = { status: !currentStatus };
+    dispatch(updateTodo({ id, updates: updatedStatus }));
   };
 
-  const removeTodo = async (id) => {
-    try {
-      await api.deleteTodo(id);
-      dispatch(deleteTodo(id));
-      toast.success("Todo successfully deleted!");
-    } catch (error) {
-      console.error("Error deleting todo:", error.message);
-      toast.error("Failed to delete todo. Please try again.");
-    }
+  const removeTodo = (id) => {
+   dispatch(deleteTodo(id));
   };
 
   return (
@@ -78,6 +45,7 @@ const HomePage = () => {
           todos={todos}
           onToggleStatus={toggleTodoStatus}
           onDeleteTodo={removeTodo}
+          isLoading={isLoading}
         />
       </div>
       <div className={s.container}>
