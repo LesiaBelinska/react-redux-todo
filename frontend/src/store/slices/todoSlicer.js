@@ -31,7 +31,7 @@ const todoSlice = createSlice({
         state.error = action.payload;
       })
       .addCase(createNewTodo.fulfilled, (state, action) => {
-        state.todos.push(action.payload);
+        state.todos.unshift(action.payload);
       })
       .addCase(updateTodo.fulfilled, (state, action) => {
         const { id, updates } = action.payload;
