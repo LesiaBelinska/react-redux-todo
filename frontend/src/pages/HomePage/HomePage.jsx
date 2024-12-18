@@ -23,12 +23,12 @@ const HomePage = () => {
   }, [dispatch]);
 
   const addNewTodo = (taskText) => {
-    const newTodo = { text: taskText, status: false };
+    const newTodo = { title: taskText, completed: false};
     dispatch(createNewTodo(newTodo));
   };
 
   const toggleTodoStatus = (id, currentStatus) => {
-    const updatedStatus = { status: !currentStatus };
+    const updatedStatus = { completed: !currentStatus };
     dispatch(updateTodo({ id, updates: updatedStatus }));
   };
 
