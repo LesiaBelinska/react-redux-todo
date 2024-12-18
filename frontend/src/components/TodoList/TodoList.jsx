@@ -16,8 +16,8 @@ const TodoList = ({todos, onToggleStatus, onDeleteTodo, isLoading}) => {
               <TodoItem
                 key={todo.id}
                 id={todo.id}
-                taskText={todo.text}
-                taskStatus={todo.status}
+                taskText={todo.title}
+                taskStatus={todo.completed}
                 onToggleStatus={onToggleStatus}
                 onDeleteTodo={onDeleteTodo}
               />
