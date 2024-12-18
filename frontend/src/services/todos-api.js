@@ -1,36 +1,14 @@
 import axios from "axios";
 
-const API_URL = "http://localhost:3000/todos";
-
 const axiosInstance = axios.create({
-  baseURL: API_URL,
-  headers: {
-    "Content-Type": "application/json",
-  },
-  withCredentials: true,
+  baseURL: "http://localhost:3000/todos",
+  headers: { "Content-Type": "application/json" },
 });
 
-async function axiosWithErrorHandling(promise) {
-  try {
-    const response = await promise;
-    return response.data;
-  } catch (error) {
-    throw new Error(error.response?.data?.message || "Not Found");
-  }
-}
+export const fetchTodosApi = () => axiosInstance.get("/");
 
-export function getTodos() {
-  return axiosWithErrorHandling(axiosInstance.get("/"));
-}
+export const createTodoApi = (todo) => axiosInstance.post("/", todo);
 
-export function createTodo(todo) {
-  return axiosWithErrorHandling(axiosInstance.post("/", todo));
-}
+export const updateTodoApi = (id, updates) => axiosInstance.put(`/${id}`, updates);
 
-export function updateTodo(id, updates) {
-  return axiosWithErrorHandling(axiosInstance.put(`/${id}`, updates));
-}
-
-export function deleteTodo(id) {
-  return axiosWithErrorHandling(axiosInstance.delete(`/${id}`));
-}
+export const deleteTodoApi = (id) => axiosInstance.delete(`/${id}`);
