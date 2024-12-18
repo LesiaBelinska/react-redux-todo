@@ -4,3 +4,11 @@
   padding: 15px 0;
   list-style: none;
 }
+
+.loading,
+.empty {
+  margin-top: 20px;
+  font-size: 1.2em;
+  font-weight: 600;
+  color: #7f9eb2;
+}
