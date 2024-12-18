@@ -1,5 +1,4 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { v4 as uuidv4 } from "uuid";
 
 import {
   fetchTodosApi,
@@ -27,13 +26,9 @@ export const createNewTodo = createAsyncThunk(
   async (todo, thunkAPI) => {
     try {
       const response = await createTodoApi(todo);
-      const uniqueId = uuidv4();
 
       toast.success("Todo successfully added!");
-      return {
-        ...response.data,
-        id: uniqueId,
-      };
+      return response.data
     } catch (error) {
       toast.error("Failed to add todo. Please try again.");
       return thunkAPI.rejectWithValue(error.response?.data || error.message);
