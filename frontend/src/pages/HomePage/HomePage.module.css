@@ -1,13 +1,71 @@
 .container {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  padding: 20px;
+  background-color: #f0f8ff;
   min-height: 100vh;
 }
 
+.card {
+  max-width: 800px;
+  margin: 0 auto;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.avatar {
+  background-color: #87d068;
+}
+
 .title {
-  font-size: 52px;
-  color: #7f9eb2;
-  text-transform: uppercase;
+  margin-bottom: 5px;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.subtitle {
+  color: #595959;
+  font-size: 16px;
+}
+
+.textContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.info {
+  display: block;
+  margin-bottom: 10px;
+  padding-left: 20px;
+  font-size: 16px;
+  color: #595959;
+}
+
+.location {
+  color: #8c8c8c;
+  font-size: 14px;
+}
+
+.section {
+  margin-top: 30px;
+}
+
+.skillsTitle,
+.contactTitle {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.list {
+  padding-left: 20px;
+  font-size: 16px;
+  color: #595959;
+}
+
+.icon {
+  font-size: 24px;
+  color: #6f8da1;
+}
+
+.icon:hover {
+  color: #607c8f;
 }
