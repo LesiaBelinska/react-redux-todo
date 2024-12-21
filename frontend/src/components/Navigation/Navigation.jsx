@@ -8,9 +8,7 @@ const Navigation = () => {
 
   return (
     <nav>
-      <ul
-        className={`${s.list} ${darkMode ? s.dark : s.light}`}
-      >
+      <ul className={`${s.list} ${darkMode ? s.dark : s.light}`}>
         <li className={s.item}>
           <NavLink
             to="/"
@@ -33,12 +31,22 @@ const Navigation = () => {
         </li>
         <li className={s.item}>
           <NavLink
-            to="/about-me"
+            to="/todo"
             className={({ isActive }) =>
               isActive ? `${s.activeLink}` : `${s.link}`
             }
           >
-            About Me
+            Todo
+          </NavLink>
+        </li>
+        <li className={s.item}>
+          <NavLink
+            to="/swapi"
+            className={({ isActive }) =>
+              isActive ? `${s.activeLink}` : `${s.link}`
+            }
+          >
+            Swapi
           </NavLink>
         </li>
       </ul>
