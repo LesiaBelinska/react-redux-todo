@@ -1,21 +1,35 @@
 .menu {
-    display: flex;
-    align-items: center;
+  display: flex;
+  align-items: center;
 }
 
 .name {
-    font-size: 22px;
-    margin-right: 20px;
-}
-
-.icon {
-    display: block;
-    fill: #1e88e5;
-    width: 18px;
-    height: 18px;
-    margin-right: 5px;
+  font-size: 22px;
+  margin-right: 20px;
 }
 
 .button {
+  font-size: 20px;
+}
 
+.light .button {
+  color: #7f9eb2 !important;
+}
+
+.dark .button {
+  color: #ffffff !important;
+}
+
+.icon {
+  margin-left: 20px;
+  margin-right: 20px;
+  font-size: 26px;
+}
+
+.light .icon {
+  color: #7f9eb2 !important;
+}
+
+.dark .icon {
+  color: #ffffff !important;
 }
