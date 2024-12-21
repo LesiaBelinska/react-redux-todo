@@ -11,3 +11,11 @@
   color: #7f9eb2;
   text-transform: uppercase;
 }
+
+.button {
+  min-width: 200px;
+  height: 50px;
+  font-size: 26px;
+  border-color: #7f9eb2 !important;
+  color: #7f9eb2 !important;
+}
