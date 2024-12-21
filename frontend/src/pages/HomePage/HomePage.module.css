@@ -1,23 +1,13 @@
 .container {
-  width: 100%;
-  max-width: 700px;
-  margin: 8vh auto 0;
-  padding: 20px;
-  text-align: center;
-  background-color: #ffffff;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
 }
-
 
 .title {
-  margin-bottom: 20px;
-  font-size: 1.5em;
+  font-size: 52px;
   color: #7f9eb2;
-}
-
-.subtitle {
-  font-size: 1.2em;
-  color: #7f9eb2;
-  text-align: left;
+  text-transform: uppercase;
 }
