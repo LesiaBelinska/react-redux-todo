@@ -1,25 +1,29 @@
+.nav {
+  flex-grow: 3;
+}
+
 .list {
-    display: flex;
+  display: flex;
 }
 
 .link {
-    font-size: 36px;
-    font-weight: 500;
+  font-size: 36px;
+  font-weight: 500;
 }
 
 .light .link {
-color: #7f9eb2;
+  color: #7f9eb2;
 }
 
 .dark .link {
-color: #ffffff;
+  color: #ffffff;
 }
 
 .activeLink {
-    font-size: 36px;
-    color: #ff6b6b;
+  font-size: 36px;
+  color: #ff6b6b;
 }
 
 .item:not(:last-child) {
-    margin-right: 20px;
+  margin-right: 20px;
 }
