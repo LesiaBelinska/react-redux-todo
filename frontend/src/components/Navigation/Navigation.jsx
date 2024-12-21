@@ -8,7 +8,7 @@ const Navigation = () => {
   const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
 
   return (
-    <nav>
+    <nav className={s.nav}>
       <ul className={`${s.list} ${darkMode ? s.dark : s.light}`}>
         <li className={s.item}>
           <NavLink
