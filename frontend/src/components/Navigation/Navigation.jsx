@@ -5,6 +5,7 @@ import s from "./Navigation.module.css";
 
 const Navigation = () => {
   const darkMode = useSelector((state) => state.theme.darkMode);
+  const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
 
   return (
     <nav>
@@ -19,36 +20,40 @@ const Navigation = () => {
             Home
           </NavLink>
         </li>
-        <li className={s.item}>
-          <NavLink
-            to="/contacts"
-            className={({ isActive }) =>
-              isActive ? `${s.activeLink}` : `${s.link}`
-            }
-          >
-            Contacts
-          </NavLink>
-        </li>
-        <li className={s.item}>
-          <NavLink
-            to="/todo"
-            className={({ isActive }) =>
-              isActive ? `${s.activeLink}` : `${s.link}`
-            }
-          >
-            Todo
-          </NavLink>
-        </li>
-        <li className={s.item}>
-          <NavLink
-            to="/swapi"
-            className={({ isActive }) =>
-              isActive ? `${s.activeLink}` : `${s.link}`
-            }
-          >
-            Swapi
-          </NavLink>
-        </li>
+        {isLoggedIn && (
+          <>
+            <li className={s.item}>
+              <NavLink
+                to="/contacts"
+                className={({ isActive }) =>
+                  isActive ? `${s.activeLink}` : `${s.link}`
+                }
+              >
+                Contacts
+              </NavLink>
+            </li>
+            <li className={s.item}>
+              <NavLink
+                to="/todo"
+                className={({ isActive }) =>
+                  isActive ? `${s.activeLink}` : `${s.link}`
+                }
+              >
+                Todo
+              </NavLink>
+            </li>
+            <li className={s.item}>
+              <NavLink
+                to="/swapi"
+                className={({ isActive }) =>
+                  isActive ? `${s.activeLink}` : `${s.link}`
+                }
+              >
+                Swapi
+              </NavLink>
+            </li>
+          </>
+        )}
       </ul>
     </nav>
   );
