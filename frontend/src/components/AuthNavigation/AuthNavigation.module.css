@@ -1,23 +1,26 @@
 .nav {
-    display: flex;
-    align-items: center;
+    flex-grow: 1;
 }
-
 .list {
-    display: flex;
+  display: flex;
+  justify-content: center;
 }
 
 .link {
-    font-size: 20px;
-    font-weight: 500;
-    color: black;
+  font-size: 20px !important;
+  font-weight: 500;
+   color: #7f9eb2 !important;
+}
+
+.light .link {
+  color: #7f9eb2 !important;
+}
+
+.dark .link {
+  color: #ffffff !important;
 }
 
 .activeLink {
-    font-size: 20px;
-    color: #1e88e5;
-}
-
-.item:not(:last-child) {
-    margin-right: 20px;
+    font-size: 20px !important;
+  color: #ff6b6b !important;
 }
